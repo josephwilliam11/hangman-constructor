@@ -1,0 +1,25 @@
+{
+  "name": "hangman-constructor",
+  "version": "1.0.0",
+  "description": "homework",
+  "main": "y",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/josephwilliam11/hangman-constructor.git"
+  },
+  "keywords": [
+    "hw"
+  ],
+  "author": "joe arnold",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/josephwilliam11/hangman-constructor/issues"
+  },
+  "homepage": "https://github.com/josephwilliam11/hangman-constructor#readme",
+  "dependencies": {
+    "inquirer": "^5.1.0"
+  }
+}
