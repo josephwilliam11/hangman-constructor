@@ -33,6 +33,9 @@ this.checkLetter = function(userInput) {
 
 }
 
+module.exports = Letter;
+
+
 Letter();
 
 

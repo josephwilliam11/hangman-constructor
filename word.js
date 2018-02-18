@@ -1,6 +1,6 @@
 // users list of words to guess from
 
-var wordList =  ['jerry seinfeld' , 'elaine benes' , 'george costanza' , 'newman' , 'susan ross' , 'frank costanza' , 'j peterman' , 'kenny ban' , 'uncle leo' , 'crazy joe davola']
+var wordList =  ['Jerry Seinfeld' , 'Elaine Benes' , 'George Costanza' , 'Newman' , 'Susan Ross' , 'Frank Costanza' , 'J Peterman' , 'Kenny Ban' , 'Uncle Leo' , 'Crazy Joe Davola']
 ;
 
 var word = function() {

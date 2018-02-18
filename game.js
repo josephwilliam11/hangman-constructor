@@ -12,71 +12,68 @@ var hangman = [
     "¯L_(ツ)_",
     "¯L_(ツ)_/",
     "¯L_(ツ)_/¯"
-]; 
-var count = 0;
-game.letterRender();
+];
 var inputArray = [];
-var GameOn = function(){
-   if (count < 10){
+game.letterRender();
+var count = 0;
+var GameOn = function () {
+
     inquirer.prompt([
         {
-          type: "input",
-          name: "userInput",
-          message: "Guess a letter!"
+            type: "input",
+            name: "userInput",
+            message: "Guess a letter!"
         }
-    
-      
-      ]).then(function(answer) {
-    
-        for (var i = 0; i < game.wordArray.length; i++){
-            if (answer.userInput == game.wordArray[i]){
-                   
-                game.underscoreArray[i] = answer.userInput;
-                game.underscoreString = game.underscoreArray.join(" ");   
-                console.log("\x1b[32m","CORRECT!!")
-// problem here if there is more than one letter correct console log that much
+
+
+    ]).then(function (answer) {
+        var correct = false;
+        var lowerCase = game.wordArray.join("").toLowerCase().split("");
+
+        if (lowerCase.indexOf(answer.userInput.toLowerCase()) !== -1) {
+            correct = true;
+            console.log("\x1b[32m", "CORRECT!!")
+        }
+        for (var i = 0; i < game.wordArray.length; i++) {
+            if (answer.userInput.toLowerCase() == lowerCase[i]) {
+                game.underscoreArray[i] = game.wordArray[i];
+                game.underscoreString = game.underscoreArray.join(" ");
             }
-        }   
-// we need to check same letter 
-        // inputArray.push(answer.userInput); 
-        // var inputString = inputArray.join('');
-        // console.log(inputString);
-        // if (inputString.indexOf(answer.userInput) !== -1){
-        //     console.log("Please guess different letter")
-        // }
-        if (gameWord.indexOf(answer.userInput) == -1 ){
+        }
+
+        if (gameWord.toLowerCase().indexOf(answer.userInput.toLowerCase()) == -1 && guesses < 9) {
+
             guesses++;
             console.log(hangman[guesses]);
-            console.log("\x1b[31m", "WRONG!!!")
-        }
+
+            // console.log("\x1b[31m", "WRONG!!!")
+        } else if (guesses >= 9) { stopGame() }
         console.log("\x1b[37m" + game.underscoreString);
-        count++;
         GameOn();
-     
-        if (game.underscoreString.indexOf("_") == -1){
+
+        if (game.underscoreString.indexOf("_") == -1) {
             console.log("you win!!")
-            count = 9;
             stopGame();
         }
-        });
-   }
+    });
+
 }
 function stopGame() {
-     inquirer.prompt([
+    inquirer.prompt([
         {
             type: "list",
             name: "what",
             message: "Do you wanna play it again??",
             choices: ["Yeap!", "Meh"]
-          } 
-     ]).then (function(answer){
-         if (answer.what === "Yeap!"){
-             GameOn();
-             //need setTime stuff here - i think
-         } else {
-             console.log("Thanks for playing!")
-         }
-     })
+        }
+    ]).then(function (answer) {
+        if (answer.what === "Yeap!") {
+            GameOn();
+            //need setTime stuff here - i think
+        } else {
+            process.exit()
+        }
+    })
 }
 GameOn();
 
